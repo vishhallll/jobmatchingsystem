@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Edit Application</title>
+</head>
+<body>
+<h1>Edit Application</h1>
+<form action="#" th:action="@{/applications/{id}(id=${application.application_id})}" th:object="${application}" method="post">
+  <label for="status">Status</label>
+  <input type="text" id="status" th:field="*{status}" /><br/>
+
+  <label for="user">User</label>
+  <select id="user" th:field="*{user.user_id}">
+    <option th:each="user : ${users}" th:value="${user.user_id}" th:text="${user.firstName + ' ' + user.lastName}"></option>
+  </select><br/>
+
+  <label for="job">Job</label>
+  <select id="job" th:field="*{job.job_id}">
+    <option th:each="job : ${jobs}" th:value="${job.job_id}" th:text="${job.title}"></option>
+  </select><br/>
+
+  <button type="submit">Save Changes</button>
+</form>
+<a href="/applications">Back to Application List</a>
+</body>
+</html>
